@@ -10,14 +10,15 @@ import styles from './HooksApp.module.scss';
 //import FocusScreen from "./components/04-useRef/FocusScreen";
 //import Memorize from "./components/06-memos/Memorize";
 //import MemoHook from "./components/06-memos/MemoHook";
-import CallbackHook from "./components/06-memos/CallbackHook";
+//import CallbackHook from "./components/06-memos/CallbackHook";
+import ToDoApp from "./components/08-useReducer/ToDoApp";
 
 const HookApp = () => {
   return (
     <ThemeProvider theme={theme}>
       <header></header>
       <main className={styles.main}>
-        <CallbackHook />
+        <ToDoApp/>
       </main>
       <footer></footer>
     </ThemeProvider>
