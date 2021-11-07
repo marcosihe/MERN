@@ -22,6 +22,15 @@ const ToDoApp = () => {
       localStorage.setItem('toDos', JSON.stringify( toDos ))
   }, [toDos])
 
+  const handleDelete = (toDoId) => {
+      const action = {
+          type: 'delete',
+          payload: toDoId
+      }
+
+      dispatch(action);
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Little validation
@@ -87,7 +96,7 @@ const ToDoApp = () => {
           {toDos.map((toDo, i) => (
             <ListItem key={toDo.id} className={styles.listItemContainer}>
               <ListItemText primary={i + 1 + ". " + toDo.desc} />
-              <IconButton edge="end" aria-label="delete">
+              <IconButton edge="end" aria-label="delete" onClick={ () => handleDelete(toDo.id)}>
                 <Delete />
               </IconButton>
             </ListItem>
