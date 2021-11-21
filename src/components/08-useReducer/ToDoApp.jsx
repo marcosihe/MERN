@@ -8,7 +8,7 @@ import { useForm } from "../../hooks/useForm";
 import styles from "./ToDoApp.module.scss";
 
 const init = () => {
-    return JSON.parse(localStorage.getItem('toDos')) || [];
+  return JSON.parse(localStorage.getItem("toDos")) || [];
 };
 
 const ToDoApp = () => {
@@ -18,18 +18,25 @@ const ToDoApp = () => {
     task: "",
   });
 
-  useEffect( () => {
-      localStorage.setItem('toDos', JSON.stringify( toDos ))
-  }, [toDos])
+  useEffect(() => {
+    localStorage.setItem("toDos", JSON.stringify(toDos));
+  }, [toDos]);
 
   const handleDelete = (toDoId) => {
-      const action = {
-          type: 'delete',
-          payload: toDoId
-      }
+    const action = {
+      type: "delete",
+      payload: toDoId,
+    };
 
-      dispatch(action);
-  }
+    dispatch(action);
+  };
+
+  const handleToggle = (toDoId) => {
+    dispatch({
+      type: "toggle",
+      payload: toDoId,
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -95,8 +102,16 @@ const ToDoApp = () => {
         <List>
           {toDos.map((toDo, i) => (
             <ListItem key={toDo.id} className={styles.listItemContainer}>
-              <ListItemText primary={i + 1 + ". " + toDo.desc} />
-              <IconButton edge="end" aria-label="delete" onClick={ () => handleDelete(toDo.id)}>
+              <ListItemText
+                primary={i + 1 + ". " + toDo.desc}
+                onClick={() => handleToggle(toDo.id)}
+                className={ `${ toDo.done && 'styles.complete' }` }
+              />
+              <IconButton
+                edge="end"
+                aria-label="delete"
+                onClick={() => handleDelete(toDo.id)}
+              >
                 <Delete />
               </IconButton>
             </ListItem>

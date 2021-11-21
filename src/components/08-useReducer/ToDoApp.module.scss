@@ -2,6 +2,10 @@
     min-width: 80vw;
 }
 
+.complete {
+    text-decoration: line-through;
+}
+
 .listItemContainer {
     display: flex;
     justify-content: space-between;
